@@ -1,1 +1,9 @@
-"# in2smart"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin https://github.com/the1Prince/in2smart.gitgit push -u origin main
+In2Smart's Payment of Things API is aimed at creating an automated ecommerce eco systems for IoT devices, where such devices can initiate payment processes with the MTN MoMo API.
+#Initial Setup
+1. pip install requirements.txt
+2. flask db init
+3. flask db migrate -m "device table"
+4. flask db upgrade
+5. flask set FLASK_APP = paymentofthings.py
+6. flask run
+7. visit http://127.0.0.1:5000 to test the endpoint and documentation
