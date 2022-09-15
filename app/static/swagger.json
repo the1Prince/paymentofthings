@@ -1,0 +1,682 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "Welcome to PoT API, official API documentation for the Payment of Things platform",
+      "version": "1.0.0",
+      "title": "PoT API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "tags": [
+        {
+          "name": "Service API",
+          "description": "Test API"
+        }
+      ],
+       "servers": [
+            {
+            "url": "/"
+            }
+        ],
+        "components": {
+            "schemas": {
+                "brand": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                            },
+                            "description": {
+                            "type": "string"
+                            },
+                            "logo": {
+                                "type" : "string"
+                                
+                                }
+                    }
+                },
+                "category": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                            },
+                            "description": {
+                            "type": "string"
+                            },
+                            "image": {
+                                "type" : "string"
+                                
+                                }
+                    }
+                },
+                "device": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                            },
+                            "description": {
+                            "type": "string"
+                            },
+                            "image": {
+                                "type" : "string"
+                                
+                                },
+                            "category_id":{
+                                "type":"string"
+                            }
+                    }
+                },
+                "thing": {
+                    "type": "object",
+                    "properties": {
+                        "unique_name": {
+                            "type": "string"
+                            },
+                            "shelf_life": {
+                                "type": "string"
+                                },
+                                "electric_consumption": {
+                                    "type": "string"
+                                    },
+                            "description": {
+                            "type": "string"
+                            },
+                            "device_id": {
+                                "type" : "string"
+                                
+                                },
+                            "brand_id":{
+                                "type":"string"
+                            }
+                    }
+                },
+                "supplier": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                            },
+                            "location": {
+                                "type": "string"
+                                },
+                                "momo_number": {
+                                    "type": "string"
+                                    },
+                            "description": {
+                            "type": "string"
+                            }
+                    }
+                },
+                "stock": {
+                    "type": "object",
+                    "properties": {
+                        "item_name": {
+                            "type": "string"
+                            },
+                            "cost": {
+                                "type": "string"
+                                },
+                                "cost_transport_per_mile": {
+                                    "type": "string"
+                                    },
+                            "service_charge": {
+                            "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                                },
+                                "supplier_id": {
+                                    "type": "string"
+                                    }
+                    }
+                },
+                "orderdetails": {
+                    "type": "object",
+                    "properties": {
+                        "stock_id": {
+                            "type": "string"
+                            },
+                            "quantity": {
+                                "type": "string"
+                                },
+                                "cost_transport_per_mile": {
+                                    "type": "string"
+                                    },
+                            "total_cost": {
+                            "type": "string"
+                            },
+                            "cur_status": {
+                                "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                    }
+                    }
+                },
+                "utitlity_meter": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                            },
+                            "image": {
+                                "type": "string"
+                                },
+                                "recharge_amount": {
+                                    "type": "string"
+                                    },
+                            "treshold_amount": {
+                            "type": "string"
+                            },
+                                "description": {
+                                    "type": "string"
+                                    }
+                    }
+                },
+                "update_utitlity_meter": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                            },
+                        "name": {
+                            "type": "string"
+                            },
+                            "image": {
+                                "type": "string"
+                                },
+                                "recharge_amount": {
+                                    "type": "string"
+                                    },
+                            "treshold_amount": {
+                            "type": "string"
+                            },
+                                "description": {
+                                    "type": "string"
+                                    }
+                    }
+                },
+                
+                "name": {
+                    "type": "string",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                            }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                            }
+                    }
+                },
+                "meter": {
+                    "type": "string",
+                    "properties": {
+                        "meter": {
+                            "type": "string"
+                            }
+                    }
+                }
+            }
+        },
+        "paths": {
+            "/v1.0/brand": {
+                "post": {
+                "tags": [
+                    "Add a new brand item "
+                ],
+                "summary": "Add new brand",
+                "requestBody": {
+                "description": "This is the endpoint for adding new brand unto our platform",
+                "required": true,
+                "content": {
+                    "application/json": {
+                    "schema": {
+                        "$ref": "#/components/schemas/brand"
+                        }
+                    }
+                }},
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                        "$ref": "#/components/schemas/brand"
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                        "$ref": "#/components/schemas/brand"
+                        }
+                }
+                }
+                
+            }
+            
+        },
+        "/v1.0/category": {
+            "post": {
+            "tags": [
+                "Add a new category item "
+            ],
+            "summary": "Add new category",
+            "requestBody": {
+            "description": "This is the endpoint for adding new category unto our platform",
+            "required": true,
+            "content": {
+                "application/json": {
+                "schema": {
+                    "$ref": "#/components/schemas/category"
+                    }
+                }
+            }},
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                    "$ref": "#/components/schemas/cateogry"
+                    }
+                },
+                "404": {
+                    "description": "NOT FOUND",
+                    "schema": {
+                    "$ref": "#/components/schemas/category"
+                    }
+            }
+            }
+            
+        }
+        
+    },
+    "/v1.0/device": {
+        "post": {
+        "tags": [
+            "Add a new device item "
+        ],
+        "summary": "Add new device",
+        "requestBody": {
+        "description": "This is the endpoint for adding new device unto our platform",
+        "required": true,
+        "content": {
+            "application/json": {
+            "schema": {
+                "$ref": "#/components/schemas/device"
+                }
+            }
+        }},
+        "responses": {
+            "200": {
+                "description": "OK",
+                "schema": {
+                "$ref": "#/components/schemas/device"
+                }
+            },
+            "404": {
+                "description": "NOT FOUND",
+                "schema": {
+                "$ref": "#/components/schemas/device"
+                }
+        }
+        }
+        
+    }
+    
+},
+"/v1.0/thing": {
+    "post": {
+    "tags": [
+        "Add a new thing object "
+    ],
+    "summary": "Add new thing",
+    "requestBody": {
+    "description": "This is the endpoint for adding new thing unto our platform",
+    "required": true,
+    "content": {
+        "application/json": {
+        "schema": {
+            "$ref": "#/components/schemas/thing"
+            }
+        }
+    }},
+    "responses": {
+        "200": {
+            "description": "OK",
+            "schema": {
+            "$ref": "#/components/schemas/thing"
+            }
+        },
+        "404": {
+            "description": "NOT FOUND",
+            "schema": {
+            "$ref": "#/components/schemas/thing"
+            }
+    }
+    }
+    
+}
+
+},
+"/v1.0/supplier": {
+    "post": {
+    "tags": [
+        "Add a new supplier item"
+    ],
+    "summary": "Add new supplier",
+    "requestBody": {
+    "description": "This is the endpoint for adding new supplier unto our platform",
+    "required": true,
+    "content": {
+        "application/json": {
+        "schema": {
+            "$ref": "#/components/schemas/supplier"
+            }
+        }
+    }},
+    "responses": {
+        "200": {
+            "description": "OK",
+            "schema": {
+            "$ref": "#/components/schemas/supplier"
+            }
+        },
+        "404": {
+            "description": "NOT FOUND",
+            "schema": {
+            "$ref": "#/components/schemas/supplier"
+            }
+    }
+    }
+    
+}
+
+},
+"/v1.0/stock": {
+    "post": {
+    "tags": [
+        "Add a new stock item"
+    ],
+    "summary": "Add new stock",
+    "requestBody": {
+    "description": "This is the endpoint for adding new stock unto our platform",
+    "required": true,
+    "content": {
+        "application/json": {
+        "schema": {
+            "$ref": "#/components/schemas/stock"
+            }
+        }
+    }},
+    "responses": {
+        "200": {
+            "description": "OK",
+            "schema": {
+            "$ref": "#/components/schemas/stock"
+            }
+        },
+        "404": {
+            "description": "NOT FOUND",
+            "schema": {
+            "$ref": "#/components/schemas/stock"
+            }
+    }
+    }
+    
+}
+
+},
+"/v1.0/orderdetails/": {
+    "post": {
+    "tags": [
+        "Add a new order details"
+    ],
+    "summary": "Add new order details",
+    "requestBody": {
+    "description": "This is the endpoint for adding new order details unto our platform",
+    "required": true,
+    "content": {
+        "application/json": {
+        "schema": {
+            "$ref": "#/components/schemas/orderdetails"
+            }
+        }
+    }},
+    "responses": {
+        "200": {
+            "description": "OK",
+            "schema": {
+            "$ref": "#/components/schemas/orderdetails"
+            }
+        },
+        "404": {
+            "description": "NOT FOUND",
+            "schema": {
+            "$ref": "#/components/schemas/orderdetails"
+            }
+    }
+    }
+    
+}
+
+},
+"/v1.0/utitlity_meter/": {
+    "post": {
+    "tags": [
+        "Add a new utility meter"
+    ],
+    "summary": "Add new utility meter",
+    "requestBody": {
+    "description": "This is the endpoint for adding new utility meter unto our platform",
+    "required": true,
+    "content": {
+        "application/json": {
+        "schema": {
+            "$ref": "#/components/schemas/utitlity_meter"
+            }
+        }
+    }},
+    "responses": {
+        "200": {
+            "description": "OK",
+            "schema": {
+            "$ref": "#/components/schemas/utitlity_meter"
+            }
+        },
+        "404": {
+            "description": "NOT FOUND",
+            "schema": {
+            "$ref": "#/components/schemas/utitlity_meter"
+            }
+    }
+    }
+    
+}
+
+
+},
+"/v1.0/update_utitlity_meter/": {
+    "put": {
+    "tags": [
+        "Update utility meter record"
+    ],
+    "summary": "update utility meter",
+    "requestBody": {
+    "description": "This is the endpoint for updating utility meter unto our platform",
+    "required": true,
+    "content": {
+        "application/json": {
+        "schema": {
+            "$ref": "#/components/schemas/update_utitlity_meter"
+            }
+        }
+    }},
+    "responses": {
+        "200": {
+            "description": "OK",
+            "schema": {
+            "$ref": "#/components/schemas/update_utitlity_meter"
+            }
+        },
+        "404": {
+            "description": "NOT FOUND",
+            "schema": {
+            "$ref": "#/components/schemas/update_utitlity_meter"
+            }
+    }
+    }
+    
+}
+
+
+},
+"/v1.0/utitlity_meter/{name}/": {
+    "get": {
+    "tags": [
+        "Get a single utility meter item"
+    ],
+    "parameters":[{
+        "name":"name",
+        "in":"path",
+        "description":"utility meter name",
+        "required":true,
+        "type":"string",
+        "schema":{
+            "$ref":"#/components/schemas/name"
+        }
+    }],
+    "summary": "Get utility meter item",
+    "requestBody": {
+    "description": "This is the endpoint for getting a single utility meter on our platform"
+   
+    },
+    "responses": {
+        "200": {
+            "description": "OK",
+            "schema": {
+            "$ref": "#/components/schemas/utitlity_meter"
+            }
+        },
+        "404": {
+            "description": "NOT FOUND",
+            "schema": {
+            "$ref": "#/components/schemas/utitlity_meter"
+            }
+    }
+    }
+    
+}
+
+
+},
+"/v1.0/publish_meter_topic/{meter}/": {
+    "post": {
+    "tags": [
+        "Get a single utility meter item"
+    ],
+    "parameters":[{
+        "name":"meter",
+        "in":"path",
+        "description":"utility meter name",
+        "required":true,
+        "type":"string",
+        "schema":{
+            "$ref":"#/components/schemas/meter"
+        }
+    }],
+    "summary": "Get utility meter item",
+    "requestBody": {
+    "description": "This is the endpoint publishing utility meter topics on our platform"
+   
+    },
+    "responses": {
+        "200": {
+            "description": "OK",
+            "schema": {
+            "$ref": "#/components/schemas/meter"
+            }
+        },
+        "404": {
+            "description": "NOT FOUND",
+            "schema": {
+            "$ref": "#/components/schemas/meter"
+            }
+    }
+    }
+    
+}
+
+
+},
+"/v1.0/subscribe_meter_topic/{meter}/": {
+    "post": {
+    "tags": [
+        "Get a single utility meter item"
+    ],
+    "parameters":[{
+        "name":"meter",
+        "in":"path",
+        "description":"utility meter name",
+        "required":true,
+        "type":"string",
+        "schema":{
+            "$ref":"#/components/schemas/meter"
+        }
+    }],
+    "summary": "Get utility meter item",
+    "requestBody": {
+    "description": "This is the endpoint subscribinging utility meter topics on our platform"
+   
+    },
+    "responses": {
+        "200": {
+            "description": "OK",
+            "schema": {
+            "$ref": "#/components/schemas/meter"
+            }
+        },
+        "404": {
+            "description": "NOT FOUND",
+            "schema": {
+            "$ref": "#/components/schemas/meter"
+            }
+    }
+    }
+    
+}
+
+
+}
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
